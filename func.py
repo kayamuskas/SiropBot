@@ -102,10 +102,9 @@ def system_uptime(arguments, message):
 def system_la(arguments, message):
     response = {'chat_id': message['chat']['id']}
 
-    la = os.getloadavg()
-    response['text'] = ("%s") % la
+    LA = str(os.getloadavg())
+    response['text'] = ("%s") % LA
     send_action(response, "typing")
-    print(la)
 #    time.sleep(1)
     return response
 
@@ -116,9 +115,9 @@ def system_la(arguments, message):
 ###
 HELPLIST = {
     "/help": "Вот это вот сообщение",
-    "/base64": base64_decode,
-    "/uptime": system_uptime,
-    "/la": system_la
+    "/base64": "base64_decode",
+    "/uptime": "system_uptime",
+    "/la": "system_la"
 }
 
 # Словарь приветствий
