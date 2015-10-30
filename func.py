@@ -121,7 +121,8 @@ def system_la(arguments, message):
 # Словарь команд для help
 ###
 HELPLIST = {
-    "/help": "Могу перекодировать из base64",
+    "/help": "Вот эта вот помощь",
+    "/base64": "Могу перекодировать из base64",
     "/uptime": "Показать uptime системы",
     "/la": "Показать Load Average",
     "/ping": "pong"
