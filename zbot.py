@@ -29,7 +29,7 @@ class MainHandler(tornado.web.RequestHandler):
             message = update['message']
             text = message['text']
 #	        text = message.get('text')
-#           chat_id = message['chat']['id']
+            chat_id = message['chat']['id']
             chat_type = message['chat']['type']
 
             if text:
@@ -51,7 +51,11 @@ class MainHandler(tornado.web.RequestHandler):
                     logging.info("REPLY\t%s\t%s" % (message['chat']['id'], response))
                     func.send_reply(response)
 
+                    if chat_id == '234270':
+                        print("kayama")
+
                 else:
+                    print(message) # debug
                     response = {'chat_id': message['chat']['id'], 'text': text}
                     func.send_action(response, "typing")
 
