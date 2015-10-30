@@ -55,9 +55,11 @@ class MainHandler(tornado.web.RequestHandler):
                         func.send_reply(response)
 
                 elif chat_type == 'group':
-                    if chat_id == -31550101:
+                    if chat_id == -31550100:
+                        print(message) # debug
                         print("test chat")
                     else:
+                        print(message) # debug
                         print("another chat")
 
 
