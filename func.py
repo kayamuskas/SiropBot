@@ -1,0 +1,144 @@
+import zbot, config
+import time, os, random, base64
+import fuzzywuzzy
+from fuzzywuzzy import process
+from datetime import timedelta
+
+
+# Основные функции бота
+###
+
+# Функция отправки ответа
+###
+def send_reply(response):
+    if 'text' in response:
+        zbot.api.post(config.URL + "sendMessage", data=response)
+
+
+# Функция сообщения действия
+###
+def send_action(response, action):
+    if 'text' in response:
+        zbot.api.post(config.URL + "sendChatAction?action=" + action, data=response)
+
+
+# Базовые команды /start и /help
+###
+def help_message(arguments, message):
+    response = {'chat_id': message['chat']['id']}
+
+    result = ["Привет, %s!" % message["from"].get("first_name"),
+              "\rЯ умею вот эти команды:"]
+
+    for command in HELPLIST:
+        string = ("%s — %s") % (command, HELPLIST[command])
+        result.append(string)
+        response['text'] = "\n\t".join(result)
+    return response
+
+
+def not_found(arguments, message):
+    response = {'chat_id': message['chat']['id']}
+
+    response['text'] = ["Я не знаю такой команды..."]
+    return response
+
+
+# Тестовая команда /base64
+###
+def base64_decode(arguments, message):
+    response = {'chat_id': message['chat']['id']}
+
+    if not arguments:
+        response['text'] = "Надо писать, типа: /base64 SGVsbG8h"
+    else:
+        try:
+            response['text'] = base64.b64decode(" ".join(arguments).encode("utf8"))
+        except:
+            response['text'] = "Немогу расшифровать"
+    return response
+
+
+def base64_decode2(arguments, message):
+    response = {'chat_id': message['chat']['id']}
+
+    p = base64.b64decode("".join('SGVsbG8h').encode("utf8"))
+    print(p)
+    return response
+
+
+# Псевдо-речь
+###
+def human_response(message):
+    response = {'chat_id': message['chat']['id']}
+
+    ratio = fuzzywuzzy.process.extract(message.get("text", ""), RESPONSES.keys(), limit=1)[0]
+
+    if ratio[1] < 75:
+        response['text'] = "Моя твоя не понимать"
+    else:
+        response['text'] = random.choice(RESPONSES.get(ratio[0])).format_map(
+            {'name': message["from"].get("first_name", "")}
+        )
+    return response 
+
+
+# Системное время
+###
+def system_uptime(arguments, message):
+    response = {'chat_id': message['chat']['id']}
+
+    with open('/proc/uptime', 'r') as f:
+        uptime_seconds = float(f.readline().split()[0])
+        uptime_string = str(timedelta(seconds = uptime_seconds))
+        response['text']=(uptime_string)
+        send_action(response, "typing")
+        time.sleep(1)
+    return response
+
+
+# System's load average
+###
+def system_la(arguments, message):
+    response = {'chat_id': message['chat']['id']}
+
+    la = os.getloadavg()
+    response['text'] = ("%s") % la
+    send_action(response, "typing")
+    print(la)
+#    time.sleep(1)
+    return response
+
+############################################################################
+
+
+# Словарь команд для help
+###
+HELPLIST = {
+    "/help": "Вот это вот сообщение",
+    "/base64": base64_decode,
+    "/uptime": system_uptime,
+    "/la": system_la
+}
+
+# Словарь приветствий
+##
+RESPONSES = {
+    "Hello": ["Hi there!", "Hi!", "Welcome!", "Hello, {name}!"],
+    "Hi there": ["Hello!", "Hello, {name}!", "Hi!", "Welcome!"],
+    "Hi!": ["Hi there!", "Hello, {name}!", "Welcome!", "Hello!"],
+    "Welcome": ["Hi there!", "Hi!", "Hello!", "Hello, {name}!"],
+    "Привет": ["Привет!", "Хай!", "Здарова!", "Привет, {name}!"],
+    "Здарова": ["Hello!", "Hello, {name}!", "Hi!", "Welcome!"],
+    "Хай!": ["Hi there!", "Hello, {name}!", "Welcome!", "Hello!"]
+}
+
+# Словарь команд
+###
+CMD = {
+    "/start": help_message,
+    "/help": help_message,
+    "/base64": base64_decode,
+    "/uptime": system_uptime,
+    "/la": system_la
+}
