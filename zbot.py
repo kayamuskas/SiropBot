@@ -52,7 +52,7 @@ class MainHandler(tornado.web.RequestHandler):
                     func.send_reply(response)
 
                 else:
-                    response = {'chat_id': message['chat']['id']}
+                    response = {'chat_id': message['chat']['id'], 'text': text}
                     func.send_action(response, "typing")
 
         except Exception as e:

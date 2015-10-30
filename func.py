@@ -18,7 +18,7 @@ def send_reply(response):
 # Функция сообщения действия
 ###
 def send_action(response, action):
-    if 'text' in response:
+     if 'text' in response:
         zbot.api.post(config.URL + "sendChatAction?action=" + action, data=response)
 
 
