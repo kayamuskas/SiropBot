@@ -30,6 +30,7 @@ class MainHandler(tornado.web.RequestHandler):
             text = message['text']
 #	        text = message.get('text')
             chat_id = message['chat']['id']
+            chat_type = message['chat']['type']
 
             if text:
                 logging.info("MESSAGE\t%s\t%s" % (message['chat']['id'], text))
@@ -43,8 +44,9 @@ class MainHandler(tornado.web.RequestHandler):
                     #time.sleep(1)
                     func.send_reply(response)
 
-                else:
+                else :
                     print(message) # debug
+                    print(chat_type) # debug
                     response = func.human_response(message)
                     logging.info("REPLY\t%s\t%s" % (message['chat']['id'], response))
                     func.send_reply(response)
