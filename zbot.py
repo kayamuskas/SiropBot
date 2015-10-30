@@ -44,15 +44,22 @@ class MainHandler(tornado.web.RequestHandler):
                     #time.sleep(1)
                     func.send_reply(response)
 
-                elif chat_type == 'private' :
-                    print(message) # debug
-                    print(chat_type) # debug
-                    response = func.human_response(message)
-                    logging.info("REPLY\t%s\t%s" % (message['chat']['id'], response))
-                    func.send_reply(response)
+                elif chat_type == 'private':
+                    if chat_id == 234270:
+                        print("!!!!kayama")
+                        print(message) # debug
+                        print(chat_id)
+                        print(chat_type) # debug
+                        response = func.human_response(message)
+                        logging.info("REPLY\t%s\t%s" % (message['chat']['id'], response))
+                        func.send_reply(response)
 
-                    if chat_id == '234270':
-                        print("kayama")
+                elif chat_type == 'group':
+                    if chat_id == -31550101:
+                        print("test chat")
+                    else:
+                        print("another chat")
+
 
                 else:
                     print(message) # debug
