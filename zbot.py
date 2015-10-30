@@ -47,27 +47,27 @@ class MainHandler(tornado.web.RequestHandler):
                 elif chat_type == 'private':
                     if chat_id == 234270:
                         print("!!!!kayama")
-                        print(message) # debug
-                        print(chat_id)
-                        print(chat_type) # debug
+
+                    print(message) # debug
+                    print(chat_id)
+                    print(chat_type) # debug
+                    response = func.human_response(message)
+                    logging.info("REPLY\t%s\t%s" % (message['chat']['id'], response))
+                    func.send_reply(response)
+
+                elif chat_type == 'group':
+                    if message['text'].startswith("@"):
+                        print("собачка")
                         response = func.human_response(message)
                         logging.info("REPLY\t%s\t%s" % (message['chat']['id'], response))
                         func.send_reply(response)
 
-                elif chat_type == 'group':
-                    if chat_id == -31550100:  # тестовый чат
+                    elif chat_id == -31550100:  # тестовый чат
                         print("test chat")
-                        start = message['text']
-                        if start.startwith("@")
-                            print("собачка")
-                    else:
-                        print("another chat")
+                        print(message) # debug
+                        response = {'chat_id': message['chat']['id'], 'text': text}
+                        func.send_action(response, "typing")
 
-
-                else:
-                    print(message) # debug
-                    response = {'chat_id': message['chat']['id'], 'text': text}
-                    func.send_action(response, "typing")
 
         except Exception as e:
             logging.warning("Error:" + str(e))
