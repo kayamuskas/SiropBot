@@ -29,7 +29,7 @@ class MainHandler(tornado.web.RequestHandler):
             message = update['message']
             text = message['text']
 #	        text = message.get('text')
-            chat_id = message['chat']['id']
+#           chat_id = message['chat']['id']
             chat_type = message['chat']['type']
 
             if text:
@@ -44,12 +44,16 @@ class MainHandler(tornado.web.RequestHandler):
                     #time.sleep(1)
                     func.send_reply(response)
 
-                else :
+                elif chat_type == 'private' :
                     print(message) # debug
                     print(chat_type) # debug
                     response = func.human_response(message)
                     logging.info("REPLY\t%s\t%s" % (message['chat']['id'], response))
                     func.send_reply(response)
+
+                else:
+                    response = {'chat_id': message['chat']['id']}
+                    func.send_action(response, "typing")
 
         except Exception as e:
             logging.warning("Error:" + str(e))
