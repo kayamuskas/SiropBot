@@ -57,6 +57,9 @@ class MainHandler(tornado.web.RequestHandler):
                 elif chat_type == 'group':
                     if chat_id == -31550100:  # тестовый чат
                         print("test chat")
+                        start = message['text']
+                        if start.startwith("@")
+                            print("собачка")
                     else:
                         print("another chat")
 
