@@ -37,6 +37,13 @@ def help_message(arguments, message):
     return response
 
 
+def ping_command(argument, message):
+    response = {'chat_id': message['chat']['id']}
+
+    response['text'] = ["pong"]
+    return response
+
+
 def not_found(arguments, message):
     response = {'chat_id': message['chat']['id']}
 
@@ -116,7 +123,8 @@ def system_la(arguments, message):
 HELPLIST = {
     "/help": "Могу перекодировать из base64",
     "/uptime": "Показать uptime системы",
-    "/la": "Показать Load Average"
+    "/la": "Показать Load Average",
+    "/ping": "pong"
 }
 
 # Словарь приветствий
@@ -139,5 +147,6 @@ CMD = {
     "/help": help_message,
     "/base64": base64_decode,
     "/uptime": system_uptime,
-    "/la": system_la
+    "/la": system_la,
+    "/ping": ping_command
 }
