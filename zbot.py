@@ -28,10 +28,8 @@ class MainHandler(tornado.web.RequestHandler):
             update = tornado.escape.json_decode(self.request.body)
             message = update['message']
             text = message['text']
-#	    text = message.get('text')
-#	    chat_id = message['chat'].get('id')
+#	        text = message.get('text')
             chat_id = message['chat']['id']
-#           print(chat_id)
 
             if text:
                 logging.info("MESSAGE\t%s\t%s" % (message['chat']['id'], text))
@@ -40,17 +38,13 @@ class MainHandler(tornado.web.RequestHandler):
                     command, *arguments = text.split(" ", 1)
                     response = func.CMD.get(command, func.not_found)(arguments, message)
                     print(command, arguments) # debug
-#                   response = {'chat_id': chat_id}
-#                   response["text"] = "Я пока не умею выполнять команды"
                     logging.info("REPLY\t%s\t%s" % (message['chat']['id'], response))
                     func.send_action(response, "typing")
-                    #ime.sleep(1)
+                    #time.sleep(1)
                     func.send_reply(response)
 
                 else:
-                    #response = {'chat_id': chat_id, 'text': text}
-                    #response = func.CMD["<speech>"](message)
-                    print(message)
+                    print(message) # debug
                     response = func.human_response(message)
                     logging.info("REPLY\t%s\t%s" % (message['chat']['id'], response))
                     func.send_reply(response)

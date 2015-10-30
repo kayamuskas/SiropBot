@@ -114,10 +114,9 @@ def system_la(arguments, message):
 # Словарь команд для help
 ###
 HELPLIST = {
-    "/help": "Вот это вот сообщение",
-    "/base64": "base64_decode",
-    "/uptime": "system_uptime",
-    "/la": "system_la"
+    "/help": "Могу перекодировать из base64",
+    "/uptime": "Показать uptime системы",
+    "/la": "Показать Load Average"
 }
 
 # Словарь приветствий
@@ -128,9 +127,10 @@ RESPONSES = {
     "Hi!": ["Hi there!", "Hello, {name}!", "Welcome!", "Hello!"],
     "Welcome": ["Hi there!", "Hi!", "Hello!", "Hello, {name}!"],
     "Привет": ["Привет!", "Хай!", "Здарова!", "Привет, {name}!"],
-    "Здарова": ["Hello!", "Hello, {name}!", "Hi!", "Welcome!"],
-    "Хай!": ["Hi there!", "Hello, {name}!", "Welcome!", "Hello!"]
-}
+    "Хай": ["Привет!", "Хай!", "Здарова!", "Приветик, {name}!"],
+    "Здарова": ["Привет!", "Хай!", "Куку!", "Привет, {name}!"],
+    "Куку": ["Привет!", "Хай!", "Здарова!", "Приветули, {name}!"],
+ }
 
 # Словарь команд
 ###
