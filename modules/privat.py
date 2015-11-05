@@ -12,11 +12,13 @@ class PrivatBankAPI:
         try:
 
             # Нал
-            #"https://api.privatbank.ua/p24api/pubinfo?json&exchange&coursid=5"
+            nalich = requests.get("https://api.privatbank.ua/p24api/pubinfo?json&exchange&coursid=5")
             # Безнал
-            #"https://api.privatbank.ua/p24api/pubinfo?exchange&json&coursid=11"
+            beznal = requests.get("https://api.privatbank.ua/p24api/pubinfo?exchange&json&coursid=11")
 
-            xmlget = requests.get("https://privat24.privatbank.uaqdqdqw")
+            print(nalich)
+            print(beznal)
+
 
         except Exception as e:
            logging.warning("Error:" + str(e))
@@ -65,4 +67,3 @@ class PrivatBankAPI:
         func.send_action(response, "typing")
         time.sleep(1)
         return response
-    
