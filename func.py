@@ -4,8 +4,7 @@ import fuzzywuzzy
 from fuzzywuzzy import process
 from datetime import timedelta
 
-#from modules import avias
-import avias
+
 from modules.privat import PrivatBankAPI as privat
 
 # Основные функции бота
