@@ -14,14 +14,15 @@ class PrivatBankAPI:
         try:
 
             # Нал
-#            nalich = requests.get("https://api.privatbank.ua/p24api/pubinfo?json&exchange&coursid=5")
+            getnalich = urlopen("https://api.privatbank.ua/p24api/pubinfo?json&exchange&coursid=5")
             # Безнал
-#            beznal = requests.get("https://api.privatbank.ua/p24api/pubinfo?exchange&json&coursid=11")
+            getbeznal = urlopen("https://api.privatbank.ua/p24api/pubinfo?exchange&json&coursid=11")
 
-            response = urlopen("https://api.privatbank.ua/p24api/pubinfo?exchange&json&coursid=11")
-            data = str(response.read())
-            print(data)
+            data_nal = str(getnalich.read())
+            data_bez = str(getbeznal.read())
 
+            print(data_nal['ccy'])
+            print(data_bez['base_ccy'])
 
         except Exception as e:
            logging.warning("Error:" + str(e))
