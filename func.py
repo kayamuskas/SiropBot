@@ -6,6 +6,7 @@ from datetime import timedelta
 
 #from modules import avias
 import avias
+import modules.privat as privat
 
 # Основные функции бота
 ###
@@ -151,5 +152,6 @@ CMD = {
     "/uptime": system_uptime,
     "/la": system_la,
     "/ping": ping_command,
-    "/avias": avias.prices
+    "/avias": avias.prices,
+    "/privat": privat.currency
 }
