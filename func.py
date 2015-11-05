@@ -4,6 +4,8 @@ import fuzzywuzzy
 from fuzzywuzzy import process
 from datetime import timedelta
 
+#from modules import avias
+import avias
 
 # Основные функции бота
 ###
@@ -123,8 +125,7 @@ def system_la(arguments, message):
 HELPLIST = {
     "/help": "Вот эта вот помощь",
     "/base64": "Могу перекодировать из base64",
-    "/uptime": "Показать uptime системы",
-    "/la": "Показать Load Average",
+    "/avias": "Сказать цены на заправках Авиас в Днепре",
     "/ping": "pong"
 }
 
@@ -149,5 +150,6 @@ CMD = {
     "/base64": base64_decode,
     "/uptime": system_uptime,
     "/la": system_la,
-    "/ping": ping_command
+    "/ping": ping_command,
+    "/avias": avias.prices
 }
