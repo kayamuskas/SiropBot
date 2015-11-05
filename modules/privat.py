@@ -22,8 +22,9 @@ class PrivatBankAPI:
            logging.warning("Error:" + str(e))
            response['text'] = "Нешмогла :("
 
+        func.send_action(response, "typing")
+        time.sleep(1)
         return response
-
 
     def avias_prices(arguments, message):
         response = {'chat_id': message['chat']['id']}
@@ -36,18 +37,18 @@ class PrivatBankAPI:
             # Парсим XML
             root = ET.fromstring(xmlget.content)
 
+            # Тесты: парсим файл
             #tree = ET.parse('price.xml')
-
             #root = tree.getroot()
 
-            # Дата "сегодня" из ответа
+            # Дата "сегодня" из ответа api
             for date in root.iter('date'):
                 day = date.attrib
                 today = day['traditional']
                 print("Сегодня, %s:" % (today))
                 result = ["\rСегодня, %s:" % (today)]
 
-            # Цены
+            # Выбираем цены
             for cost in root.iter('price'):
                 avias = cost.attrib
                 fuel = avias['type']
@@ -57,11 +58,11 @@ class PrivatBankAPI:
                 result.append(string)
                 response['text'] = "\n\t".join(result)
 
-            func.send_action(response, "typing")
-            time.sleep(1)
-            return response
-
         except Exception as e:
            logging.warning("Error:" + str(e))
            response['text'] = "Нешмогла :("
 
+        func.send_action(response, "typing")
+        time.sleep(1)
+        return response
+    
