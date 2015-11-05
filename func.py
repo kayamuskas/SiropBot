@@ -6,7 +6,7 @@ from datetime import timedelta
 
 #from modules import avias
 import avias
-import modules.privat as privat
+from modules.privat import PrivatBankAPI as privat
 
 # Основные функции бота
 ###
