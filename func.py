@@ -40,7 +40,7 @@ def help_message(arguments, message):
     return response
 
 
-def ping_command(argument, message):
+def ping_command(arguments, message):
     response = {'chat_id': message['chat']['id']}
 
     response['text'] = ["pong"]
@@ -152,6 +152,6 @@ CMD = {
     "/uptime": system_uptime,
     "/la": system_la,
     "/ping": ping_command,
-    "/avias": avias.prices,
+    "/avias": privat.avias_prices,
     "/privat": privat.currency
 }

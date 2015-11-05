@@ -2,6 +2,7 @@ import requests
 import func, time
 from xml.etree import ElementTree as ET
 
+
 def prices(arguments, message):
     response = {'chat_id': message['chat']['id']}
     
