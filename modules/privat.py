@@ -3,7 +3,7 @@ import logging
 
 class PrivatBankAPI:
 
-    def currency(argument, message):
+    def currency(arguments, message):
         response = {'chat_id': message['chat']['id']}
 
         try:
@@ -13,12 +13,11 @@ class PrivatBankAPI:
             # Безнал
             #"https://api.privatbank.ua/p24api/pubinfo?exchange&json&coursid=11"
 
-            # print("Hello Currency!")
-
+            if arguments:
+                print("Hello Currency!")
 
         except Exception as e:
-            logging.warning("Error:" + str(e))
-            response['text'] = "Нешмогла :("
+           logging.warning("Error:" + str(e))
+           response['text'] = "Нешмогла :("
 
         return response
-
