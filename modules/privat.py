@@ -20,12 +20,14 @@ class PrivatBankAPI:
             
             # Парсим нал
             encoding_nal = reqnal.headers.get_content_charset()
-            obj_nal = json.loads(reqnal.read().decode(encoding_nal))
+            obj_nal = json.load(reqnal.read().decode(encoding_nal))
             print(obj_nal)
+            t = obj_nal[sale]
+            print(t)
 
             # Парсим безнал
             encoding_bez = reqbez.headers.get_content_charset()
-            obj_bez = json.loads(reqbez.read().decode(encoding_bez))
+            obj_bez = json.load(reqbez.read().decode(encoding_bez))
             print(obj_bez)
 
         except Exception as e:
