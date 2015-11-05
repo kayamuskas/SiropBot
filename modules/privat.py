@@ -2,7 +2,7 @@ import requests, json
 import logging
 import func, time
 
-from urllib.request import urlopen
+from urllib import request
 from xml.etree import ElementTree as ET
 
 
@@ -14,15 +14,19 @@ class PrivatBankAPI:
         try:
 
             # Нал
-            getnalich = urlopen("https://api.privatbank.ua/p24api/pubinfo?json&exchange&coursid=5")
+            reqnal = request.urlopen("https://api.privatbank.ua/p24api/pubinfo?json&exchange&coursid=5")
             # Безнал
-            getbeznal = urlopen("https://api.privatbank.ua/p24api/pubinfo?exchange&json&coursid=11")
+            reqbez = request.urlopen("https://api.privatbank.ua/p24api/pubinfo?exchange&json&coursid=11")
+            
+            # Парсим нал
+            encoding_nal = reqnal.headers.get_content_charset()
+            obj_nal = json.loads(reqnal.read().decode(encoding_nal))
+            print(obj_nal)
 
-            data_nal = str(getnalich.read())
-            data_bez = str(getbeznal.read())
-
-            print(data_nal['ccy'])
-            print(data_bez['base_ccy'])
+            # Парсим безнал
+            encoding_bez = reqbez.headers.get_content_charset()
+            obj_bez = json.loads(reqbez.read().decode(encoding_bez))
+            print(obj_bez)
 
         except Exception as e:
            logging.warning("Error:" + str(e))
