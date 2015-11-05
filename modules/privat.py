@@ -13,9 +13,12 @@ class PrivatBankAPI:
             # Безнал
             #"https://api.privatbank.ua/p24api/pubinfo?exchange&json&coursid=11"
 
-            print("Hello Currency!")
+            # print("Hello Currency!")
 
 
         except Exception as e:
             logging.warning("Error:" + str(e))
+            response['text'] = "Нешмогла :("
+
+        return response
 
