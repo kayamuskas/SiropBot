@@ -13,11 +13,11 @@ class PrivatBankAPI:
             # Безнал
             #"https://api.privatbank.ua/p24api/pubinfo?exchange&json&coursid=11"
 
-            if arguments:
-                print("Hello Currency!")
+            xmlget = requests.get("https://privat24.privatbank.uaqdqdqw")
 
         except Exception as e:
            logging.warning("Error:" + str(e))
+           print("Fail")
            response['text'] = "Нешмогла :("
 
         return response
