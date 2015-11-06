@@ -25,15 +25,15 @@ class PrivatBankAPI:
 
             # Dollar
             usdbuy = round(float(data_nal[2]['buy']), 2)
-            usdsale = round(float(data_bez[2]['sale']), 2)
+            usdsale = round(float(data_nal[2]['sale']), 2)
 
             # Euro
             eurbuy = round(float(data_nal[1]['buy']), 2)
-            eursale = round(float(data_bez[1]['sale']), 2)
+            eursale = round(float(data_nal[1]['sale']), 2)
 
             # Rubl
             rubbuy = round(float(data_nal[0]['buy']), 2)
-            rubsale = round(float(data_bez[0]['sale']), 2)
+            rubsale = round(float(data_nal[0]['sale']), 2)
 
 
             #print(reqnal.headers['content-type']) <- для дебага, смотреть заголовки
