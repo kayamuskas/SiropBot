@@ -70,7 +70,7 @@ class PrivatBankAPI:
             str_b = ("€ покупает по %s, а продает по %s" % (eurbuy, eursale))
             str_c = ("₽ покупает по %s, а продает по %s" % (rubbuy, rubsale))
 
-            result.append("\r\rа безналичный курс:")
+            result.append("\nа безналичный курс:")
 
             result.append(str_a)
             result.append(str_b)
