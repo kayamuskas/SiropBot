@@ -26,7 +26,7 @@ class PrivatBankAPI:
 
             #print(reqnal.headers['content-type']) <- для дебага, смотреть заголовки
             print("------------")
-            print(data)
+            print(datanal)
             print("------------")
             print(datanal[0]['buy'])
             print(datanal[1]['ccy'])
