@@ -28,9 +28,9 @@ class PrivatBankAPI:
             print("------------")
             print(data)
             print("------------")
-            print(data[0]['buy'])
-            print(data[1]['ccy'])
-            print(data[1]['buy'])
+            print(datanal[0]['buy'])
+            print(datanal[1]['ccy'])
+            print(datanal[1]['buy'])
 
 
             # Парсим безнал
