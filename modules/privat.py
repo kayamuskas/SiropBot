@@ -42,7 +42,7 @@ class PrivatBankAPI:
             str_c = ("₽ покупает по %s, а продает по %s" % (rubbuy, rubsale))
 
             result = ["\rЗначит так, ПриватБанк сегодня, наличный курс:"]
-            
+
             result.append(str_a)
             result.append(str_b)
             result.append(str_c)
@@ -70,7 +70,7 @@ class PrivatBankAPI:
             str_b = ("€ покупает по %s, а продает по %s" % (eurbuy, eursale))
             str_c = ("₽ покупает по %s, а продает по %s" % (rubbuy, rubsale))
 
-            result.append("\rа безналичный курс:")
+            result.append("\r\rа безналичный курс:")
 
             result.append(str_a)
             result.append(str_b)
