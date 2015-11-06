@@ -23,8 +23,9 @@ class PrivatBankAPI:
             content = reqnal.read().decode('utf8')
             datanal = json.loads(content)
 
-            baksbuy = str(datanal[2]['buy'])
-            baksale = str(datanal[2]['sale'])
+            baksbuy = round(float(data[2]['buy']), 2)
+            baksale = round(float(data[0]['sale']), 2)
+            
             #print(reqnal.headers['content-type']) <- для дебага, смотреть заголовки
             str_a = ("$ покупает по %s, а продает по %s" % (baksbuy, baksale))
             ##str_b = ("€ покупает по %s, а продает по %s" % (datanal[1]['buy'], datanal[1]['sale']))
