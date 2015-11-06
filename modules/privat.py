@@ -42,14 +42,41 @@ class PrivatBankAPI:
             str_c = ("₽ покупает по %s, а продает по %s" % (rubbuy, rubsale))
 
             result = ["\rЗначит так, ПриватБанк сегодня, наличный курс:"]
+            
+            result.append(str_a)
+            result.append(str_b)
+            result.append(str_c)
+
+            #response['text'] = "\n\t".join(result)
+
+
+            # Парсим безнал
+            content_bez = req_bez.read().decode('utf8')
+            data_bez = json.loads(content_bez)
+
+            # Dollar
+            usdbuy = round(float(data_bez[2]['buy']), 2)
+            usdsale = round(float(data_bez[2]['sale']), 2)
+
+            # Euro
+            eurbuy = round(float(data_bez[1]['buy']), 2)
+            eursale = round(float(data_bez[1]['sale']), 2)
+
+            # Rubl
+            rubbuy = round(float(data_bez[0]['buy']), 2)
+            rubsale = round(float(data_bez[0]['sale']), 2)
+
+            str_a = ("$ покупает по %s, а продает по %s" % (usdbuy, usdsale))
+            str_b = ("€ покупает по %s, а продает по %s" % (eurbuy, eursale))
+            str_c = ("₽ покупает по %s, а продает по %s" % (rubbuy, rubsale))
+
+            result.append("\rа безналичный курс:")
+
             result.append(str_a)
             result.append(str_b)
             result.append(str_c)
 
             response['text'] = "\n\t".join(result)
-
-
-            # Парсим безнал
 
 
         except Exception as e:
