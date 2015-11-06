@@ -1,4 +1,5 @@
 import requests, json
+import urllib.request
 import logging
 import func, time
 
@@ -14,21 +15,26 @@ class PrivatBankAPI:
         try:
 
             # Нал
-            reqnal = request.urlopen("https://api.privatbank.ua/p24api/pubinfo?json&exchange&coursid=5")
+            reqnal = urllib.request.urlopen("https://api.privatbank.ua/p24api/pubinfo?json&exchange&coursid=5")
             # Безнал
-            reqbez = request.urlopen("https://api.privatbank.ua/p24api/pubinfo?exchange&json&coursid=11")
+            reqbez = urllib.request.urlopen("https://api.privatbank.ua/p24api/pubinfo?exchange&json&coursid=11")
             
             # Парсим нал
-            encoding_nal = reqnal.headers.get_content_charset()
-            obj_nal = json.load(reqnal.read().decode(encoding_nal))
-            print(obj_nal)
-            t = obj_nal[sale]
-            print(t)
+            content = reqnal.read().decode('utf8')
+            datanal = json.loads(content)
+
+
+            #print(reqnal.headers['content-type']) <- для дебага, смотреть заголовки
+            print("------------")
+            print(data)
+            print("------------")
+            print(data[0]['buy'])
+            print(data[1]['ccy'])
+            print(data[1]['buy'])
+
 
             # Парсим безнал
-            encoding_bez = reqbez.headers.get_content_charset()
-            obj_bez = json.load(reqbez.read().decode(encoding_bez))
-            print(obj_bez)
+
 
         except Exception as e:
            logging.warning("Error:" + str(e))
