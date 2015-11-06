@@ -25,12 +25,7 @@ class PrivatBankAPI:
 
 
             #print(reqnal.headers['content-type']) <- для дебага, смотреть заголовки
-            print("------------")
-            print(datanal)
-            print("------------")
-            print(datanal[0]['buy'])
-            print(datanal[1]['ccy'])
-            print(datanal[1]['buy'])
+            print("Рубль покупаем по %s, а продаем по %s") % (datanal[0]['buy'], datanal[0]['sell'])
 
 
             # Парсим безнал
