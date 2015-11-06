@@ -15,26 +15,36 @@ class PrivatBankAPI:
         try:
 
             # Нал
-            reqnal = urllib.request.urlopen("https://api.privatbank.ua/p24api/pubinfo?json&exchange&coursid=5")
+            req_nal = urllib.request.urlopen("https://api.privatbank.ua/p24api/pubinfo?json&exchange&coursid=5")
             # Безнал
-            reqbez = urllib.request.urlopen("https://api.privatbank.ua/p24api/pubinfo?exchange&json&coursid=11")
+            req_bez = urllib.request.urlopen("https://api.privatbank.ua/p24api/pubinfo?exchange&json&coursid=11")
             
             # Парсим нал
-            content = reqnal.read().decode('utf8')
-            datanal = json.loads(content)
+            content_nal = req_nal.read().decode('utf8')
+            data_nal = json.loads(content_nal)
 
-            baksbuy = round(float(datanal[2]['buy']), 2)
-            baksale = round(float(datanal[2]['sale']), 2)
+            # Dollar
+            usdbuy = round(float(data_nal[2]['buy']), 2)
+            usdsale = round(float(data_bez[2]['sale']), 2)
+
+            # Euro
+            eurbuy = round(float(data_nal[1]['buy']), 2)
+            eursale = round(float(data_bez[1]['sale']), 2)
+
+            # Rubl
+            rubbuy = round(float(data_nal[0]['buy']), 2)
+            rubsale = round(float(data_bez[0]['sale']), 2)
+
 
             #print(reqnal.headers['content-type']) <- для дебага, смотреть заголовки
-            str_a = ("$ покупает по %s, а продает по %s" % (baksbuy, baksale))
-            #str_b = ("€ покупает по %s, а продает по %s" % (datanal[1]['buy'], datanal[1]['sale']))
-            #str_c = ("₽ покупает по %s, а продает по %s" % (datanal[0]['buy'], datanal[0]['sale']))
+            str_a = ("$ покупает по %s, а продает по %s" % (usdbuy, usdsale))
+            str_b = ("€ покупает по %s, а продает по %s" % (eurbuy, eursale))
+            str_c = ("₽ покупает по %s, а продает по %s" % (rubbuy, rubsale))
 
             result = ["\rЗначит так, ПриватБанк сегодня, наличный курс:"]
             result.append(str_a)
-            #result.append(str_b)
-            #result.append(str_c)
+            result.append(str_b)
+            result.append(str_c)
 
             response['text'] = "\n\t".join(result)
 
