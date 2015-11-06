@@ -25,11 +25,11 @@ class PrivatBankAPI:
 
 
             #print(reqnal.headers['content-type']) <- для дебага, смотреть заголовки
-            str_a = ("Доллар покупаем по %s, а продаем по %s" % (datanal[2]['buy'], datanal[2]['sale']))
-            str_b = ("Евро покупаем по %s, а продаем по %s" % (datanal[1]['buy'], datanal[1]['sale']))
-            str_c = ("Рубль покупаем по %s, а продаем по %s" % (datanal[0]['buy'], datanal[0]['sale']))
+            str_a = ("$ покупает по %s, а продает по %s" % (datanal[2]['buy'], datanal[2]['sale']))
+            str_b = ("€ покупает по %s, а продает по %s" % (datanal[1]['buy'], datanal[1]['sale']))
+            str_c = ("₽ покупает по %s, а продает по %s" % (datanal[0]['buy'], datanal[0]['sale']))
 
-            result = ["\rЗначит сегодня, наличный %s:"]
+            result = ["\rЗначит так, ПриватБанк сегодня, наличный курс:"]
             result.append(str_a)
             result.append(str_b)
             result.append(str_c)
