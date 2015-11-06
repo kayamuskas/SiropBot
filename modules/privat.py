@@ -25,9 +25,16 @@ class PrivatBankAPI:
 
 
             #print(reqnal.headers['content-type']) <- для дебага, смотреть заголовки
-            print("Рубль покупаем по %s, а продаем по %s" % (datanal[0]['buy'], datanal[0]['sale']))
-            print("Евро покупаем по %s, а продаем по %s" % (datanal[1]['buy'], datanal[1]['sale']))
-            print("Доллар покупаем по %s, а продаем по %s" % (datanal[2]['buy'], datanal[2]['sale']))
+            str_a = ("Доллар покупаем по %s, а продаем по %s" % (datanal[2]['buy'], datanal[2]['sale']))
+            str_b = ("Евро покупаем по %s, а продаем по %s" % (datanal[1]['buy'], datanal[1]['sale']))
+            str_c = ("Рубль покупаем по %s, а продаем по %s" % (datanal[0]['buy'], datanal[0]['sale']))
+
+            result = ["\rЗначит сегодня, наличный %s:"]
+            result.append(str_a)
+            result.append(str_b)
+            result.append(str_c)
+
+            response['text'] = "\n\t".join(result)
 
 
             # Парсим безнал
