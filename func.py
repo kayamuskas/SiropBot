@@ -159,5 +159,5 @@ CMD = {
     "/avias": privat.avias_prices,
     "/privat": privat.currency,
     "/weather": modules.weather.getweather,
-    "/news": modules.news
+    "/news": modules.news.getnews
 }
