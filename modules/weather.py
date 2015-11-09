@@ -8,7 +8,7 @@ import feedparser
 import logging
 import time, func
 
-def weather(arguments, message):
+def getweather(arguments, message):
 
     response = {'chat_id': message['chat']['id']}
 
