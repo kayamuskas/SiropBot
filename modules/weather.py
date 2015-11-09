@@ -34,6 +34,7 @@ def getweather(arguments, message):
 
     except Exception as e:
             logging.warning("Error:" + str(e))
+            print("Error")
             response['text'] = "Нешмогла :("
 
 
