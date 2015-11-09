@@ -41,9 +41,3 @@ def parse(arguments, message):
     time.sleep(1)
 
     return response
-
-
-
-if __name__ == '__main__':
-    parse()
-
