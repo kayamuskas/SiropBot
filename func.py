@@ -7,6 +7,7 @@ from datetime import timedelta
 
 from modules.privat import PrivatBankAPI as privat
 import modules.weather
+import modules.news
 
 # Основные функции бота
 ###
@@ -129,7 +130,8 @@ HELPLIST = {
     "/avias": "Сказать цены на заправках Авиас в Днепре",
     "/ping": "pong",
     "/privat": "Показать курсы валют Приватбанка",
-    "/weather": "Показать прогноз погоды"
+    "/weather": "Показать прогноз погоды",
+    "/news": "Рассказать последние новости"
 }
 
 # Словарь приветствий
@@ -156,5 +158,6 @@ CMD = {
     "/ping": ping_command,
     "/avias": privat.avias_prices,
     "/privat": privat.currency,
-    "/weather": modules.weather.getweather
+    "/weather": modules.weather.getweather,
+    "/news": modules.news
 }
