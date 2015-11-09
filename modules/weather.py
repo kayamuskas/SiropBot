@@ -24,9 +24,6 @@ def getweather(arguments, message):
         result = ["\rЗначит так, прогноз такой:"]
 
         # Разгребаем фид
-
-        print("dddd")
-
         for item in feed.entries:
 
             title = str(item.title)
