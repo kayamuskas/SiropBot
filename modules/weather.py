@@ -8,7 +8,7 @@ import feedparser
 import logging
 import time, func
 
-def parse(arguments, message):
+def weather(arguments, message):
 
     response = {'chat_id': message['chat']['id']}
 
@@ -26,10 +26,10 @@ def parse(arguments, message):
         # Разгребаем фид
         for item in feed.entries:
 
-           title = str(item.title)
-           string = (title[16:] + "\n" + item.description + "\n")
-           print(string)
-           result.append(string)
+            title = str(item.title)
+            string = (title[16:] + "\n" + item.description + "\n")
+            print(string)  # debug
+            result.append(string)
 
 
     except Exception as e:
