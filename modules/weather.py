@@ -15,26 +15,28 @@ def getweather(arguments, message):
     try:
 
         # Локально парсим тестовый файл. Или потом превратим его в "cache"
-        url = ("dp.xml")
+        #url = ('dp.xml')
         # rss информера по Днепропетровску
-        #url = ('http://informer.gismeteo.ua/rss/34504.xml')
+        url = ('http://informer.gismeteo.ua/rss/34504.xml')
         feed = feedparser.parse(url)
 
         # Формируем результат
         result = ["\rЗначит так, прогноз такой:"]
 
         # Разгребаем фид
+
+        print("dddd")
+
         for item in feed.entries:
 
             title = str(item.title)
             string = (title[16:] + "\n" + item.description + "\n")
             print(string)  # debug
             result.append(string)
-
+            response['text'] = "\n\t".join(result)
 
     except Exception as e:
             logging.warning("Error:" + str(e))
-            print("Error")
             response['text'] = "Нешмогла :("
 
 
