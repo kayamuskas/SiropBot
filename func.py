@@ -6,7 +6,7 @@ from datetime import timedelta
 
 
 from modules.privat import PrivatBankAPI as privat
-import modules.weather
+from modules.weather import weather
 
 # Основные функции бота
 ###
@@ -156,5 +156,5 @@ CMD = {
     "/ping": ping_command,
     "/avias": privat.avias_prices,
     "/privat": privat.currency,
-    "/weather": modules.weather
+    "/weather": weather
 }
