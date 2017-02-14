@@ -5,7 +5,7 @@ import feedparser
 import logging
 import time, func
 
-def getnews(arguments, message):
+def get_news(arguments, message):
 
     response = {'chat_id': message['chat']['id']}
 

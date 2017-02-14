@@ -7,8 +7,7 @@ import zbot, config
 ###
 application = zbot.tornado.web.Application([
     (r"/", zbot.RootHandler),
-    (r"/bot%s" % config.BOT_TOKEN, zbot.MainHandler),
-    (r"/Bal", zbot.tornado.web.RedirectHandler, {"url": "http://natribu.org/"}) # Спамеры, сука, заебали
+    (r"/bot%s" % config.BOT_TOKEN, zbot.MainHandler)
 ], debug=True)
 
 # Set WebHook
